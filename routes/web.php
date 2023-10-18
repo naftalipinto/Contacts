@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [ContactsController::class, 'index'])->name('index');
-Route::get('/criar', [ContactsController::class, 'create'])->name('contact.create');
-Route::post('/criar', [ContactsController::class, 'store'])->name('contact.store');
-Route::get('/edit/{id}', [ContactsController::class, 'edit'])->name('contact.show');
-Route::put('/edit/{id}', [ContactsController::class, 'update'])->name('contact.show');
+Route::get('/', [ContactController::class, 'index'])->name('index');
+Route::get('/criar', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/criar', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/edit/{id}', [ContactController::class, 'edit'])->name('contact.show');
+Route::put('/edit/{id}', [ContactController::class, 'update'])->name('contact.show');

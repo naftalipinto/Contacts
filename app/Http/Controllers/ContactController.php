@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contacts;
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
 
     public function index()
     {
         $get = request('search');
         if ($get) {
-            $contact = Contacts::where(function ($query) use ($get) {
+            $contact = Contact::where(function ($query) use ($get) {
                 $query->where('name', 'like', '%' . $get . '%')
                     ->orWhere('number', 'like', '%' . $get . '%');
             })->get();
-
         } else {
-            $contact = Contacts::all();
+            $contact = Contact::all();
         }
         return view('welcome', compact('contact', 'get'));
     }
-    
+
     public function create()
     {
         return view('Create');
@@ -30,19 +29,19 @@ class ContactsController extends Controller
 
     public function edit($id)
     {
-        $contact = Contacts::findOrFail($id);
+        $contact = Contact::findOrFail($id);
         return view('edit', compact('contact'));
     }
-    
+
     public function update(request $request)
     {
-        Contacts::findOrFail($request->id)->update($request->all());
+        Contact::findOrFail($request->id)->update($request->all());
         return redirect(route('index'));
     }
-    
+
     public function store(Request $request)
     {
-        $contacto = new Contacts();
+        $contacto = new Contact();
         $contacto->name = $request->name;
         $contacto->number = $request->number;
         $contacto->save();
