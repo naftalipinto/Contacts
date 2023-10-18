@@ -5,7 +5,7 @@
     <form action="{{ route('contact.show', $contact->id) }}" method="post">
         @csrf
         @method('put')
-        
+
         <div class="mb-3">
             <label for="" class="form-label">Nome</label>
             <input type="text" class="form-control" name="name" value="{{ $contact->name }} ""helpId" placeholder="">

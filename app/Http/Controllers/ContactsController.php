@@ -43,8 +43,8 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         $contacto = new Contacts();
-        $contacto->name = $request->nome;
-        $contacto->number = $request->numero;
+        $contacto->name = $request->name;
+        $contacto->number = $request->number;
         $contacto->save();
         return redirect('/')->with('msg', 'Cadastrado com sucesso!!!');
     }
