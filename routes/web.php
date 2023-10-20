@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
-
+//Contactos
 Route::get('/', [ContactController::class, 'index'])->name('index');
-Route::get('/criar', [ContactController::class, 'create'])->name('contact.create');
-Route::post('/criar', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/edit/{id}', [ContactController::class, 'edit'])->name('contact.show');
-Route::put('/edit/{id}', [ContactController::class, 'update'])->name('contact.show');
+Route::get('/contacto/criar', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contacto/salvar', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/contacto/edit/{id}', [ContactController::class, 'edit'])->name('contact.show');
+Route::put('/contacto/edit/{id}', [ContactController::class, 'update'])->name('contact.show');
+
+
+//Person
+Route::get('/pessoa/criar', [PersonController::class, 'create'])->name('person.create');
+Route::post('/pessoa/salvar', [PersonController::class, 'store'])->name('person.store');
+Route::get('/pessoa/edit/{id}', [PersonController::class, 'edit'])->name('person.show');
+Route::put('/pessoa/edit/{id}', [PersonController::class, 'update'])->name('person.show');

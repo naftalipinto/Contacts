@@ -12,10 +12,7 @@ class ContactController extends Controller
     {
         $get = request('search');
         if ($get) {
-            $contact = Contact::where(function ($query) use ($get) {
-                $query->where('name', 'like', '%' . $get . '%')
-                    ->orWhere('number', 'like', '%' . $get . '%');
-            })->get();
+            $contact = Contact::where('number', 'like', '%' . $get . '%')->get();
         } else {
             $contact = Contact::all();
         }
@@ -24,13 +21,13 @@ class ContactController extends Controller
 
     public function create()
     {
-        return view('Create');
+        return view('contact.create');
     }
 
     public function edit($id)
     {
         $contact = Contact::findOrFail($id);
-        return view('edit', compact('contact'));
+        return view('contact.edit', compact('contact'));
     }
 
     public function update(request $request)
@@ -42,7 +39,6 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $contacto = new Contact();
-        $contacto->name = $request->name;
         $contacto->number = $request->number;
         $contacto->save();
         return redirect('/')->with('msg', 'Cadastrado com sucesso!!!');

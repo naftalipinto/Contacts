@@ -24,7 +24,7 @@
             <tbody>
                 @foreach ($contact as $item)
                     <tr class="">
-                        <td>{{ $item->name }}</td>
+                        <td></td>
                         <td>{{ $item->number }}</td>
                         <td>
                             <a href="{{ route('contact.show', $item->id) }}" class="btn btn-primary">Editar</a>

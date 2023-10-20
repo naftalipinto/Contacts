@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     use HasFactory;
-
-    public function contacts(){
-        return $this->hasMany(Contact::class);
-    }
+    protected $guarded=[];
+   
 }
