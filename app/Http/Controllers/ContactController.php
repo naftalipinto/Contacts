@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Person;
 
 class ContactController extends Controller
 {
@@ -21,7 +22,8 @@ class ContactController extends Controller
 
     public function create()
     {
-        return view('contact.create');
+        $person = person::all();
+        return view('contact.create' , compact('person'));
     }
 
     public function edit($id)

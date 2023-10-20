@@ -9,5 +9,8 @@ class Contact extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function person(){
+        return $this->belongsTo(Person::class);
+    }
     
 }

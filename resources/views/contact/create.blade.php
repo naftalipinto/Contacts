@@ -10,7 +10,11 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Nome</label>
-            <input type="text" class="form-control" name="name" aria-describedby="helpId" placeholder="">
+          <select name="" id="">
+            @foreach($person as $item)
+            <option value="{{$item->id}}">{{$item->name}}</option>
+            @endforeach
+          </select>
         </div>
         
         <div class="mb-3">
