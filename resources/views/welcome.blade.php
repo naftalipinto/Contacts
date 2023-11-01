@@ -22,15 +22,22 @@
             </thead>
 
             <tbody>
-                @foreach ($contact as $item)
+                @foreach ($contact as $contact)
                     <tr class="">
-                        <td></td>
-                        <td>{{ $item->number }}</td>
                         <td>
-                            <a href="{{ route('contact.show', $item->id) }}" class="btn btn-primary">Editar</a>
+                            @if ($contact->person)
+                                {{ $contact->person->name }}
+                            @else
+                                N/A
+                            @endif
+                        </td>
+                        <td>{{ $contact->number }}</td>
+                        <td>
+                            <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary">Editar</a>
                         </td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>

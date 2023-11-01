@@ -15,7 +15,7 @@ class ContactController extends Controller
         if ($get) {
             $contact = Contact::where('number', 'like', '%' . $get . '%')->get();
         } else {
-            $contact = Contact::all();
+            $contact = Contact::with('person')->get();
         }
         return view('welcome', compact('contact', 'get'));
     }
@@ -23,7 +23,7 @@ class ContactController extends Controller
     public function create()
     {
         $person = person::all();
-        return view('contact.create' , compact('person'));
+        return view('contact.create', compact('person'));
     }
 
     public function edit($id)
@@ -42,6 +42,7 @@ class ContactController extends Controller
     {
         $contacto = new Contact();
         $contacto->number = $request->number;
+        $contacto->people_id = $request->people_id;
         $contacto->save();
         return redirect('/')->with('msg', 'Cadastrado com sucesso!!!');
     }
