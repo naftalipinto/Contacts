@@ -10,7 +10,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Nome</label>
-          <select name="people_id" class="form-select" aria-label="Default select example">
+          <select name="owners_id" class="form-select" aria-label="Default select example">
             @foreach($person as $item)
             <option value="{{$item->id}}">{{$item->name}}</option>
             @endforeach

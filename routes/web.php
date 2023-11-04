@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Route::put('/contacto/edit/{id}', [ContactController::class, 'update'])->name('c
 
 
 //Person
-Route::get('/pessoa/criar', [PersonController::class, 'create'])->name('person.create');
-Route::post('/pessoa/salvar', [PersonController::class, 'store'])->name('person.store');
-Route::get('/pessoa/edit/{id}', [PersonController::class, 'edit'])->name('person.show');
-Route::put('/pessoa/edit/{id}', [PersonController::class, 'update'])->name('person.show');
+Route::get('/pessoa/criar', [OwnerController::class, 'create'])->name('person.create');
+Route::post('/pessoa/salvar', [OwnerController::class, 'store'])->name('person.store');
+Route::get('/pessoa/edit/{id}', [OwnerController::class, 'edit'])->name('person.show');
+Route::put('/pessoa/edit/{id}', [OwnerController::class, 'update'])->name('person.show');

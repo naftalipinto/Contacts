@@ -25,11 +25,9 @@
                 @foreach ($contact as $contact)
                     <tr class="">
                         <td>
-                            @if ($contact->person)
-                                {{ $contact->person->name }}
-                            @else
-                                N/A
-                            @endif
+                        
+                                {{ $contact->getOwner->name}}
+                      
                         </td>
                         <td>{{ $contact->number }}</td>
                         <td>

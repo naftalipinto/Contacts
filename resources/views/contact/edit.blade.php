@@ -8,7 +8,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Nome</label>
-            <input type="text" class="form-control" name="name" value="{{ $contact->name }} ""helpId" placeholder="">
+            <input type="text" class="form-control" name="name" value="{{ $contact->getOwner->name }} ""helpId" placeholder="">
         </div>
 
         <div class="mb-3">

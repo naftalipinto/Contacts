@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Owner;
 use App\Models\Person;
 
 class ContactController extends Controller
@@ -13,16 +14,19 @@ class ContactController extends Controller
     {
         $get = request('search');
         if ($get) {
-            $contact = Contact::where('number', 'like', '%' . $get . '%')->get();
+            $contact = Contact::join('owners', 'owners.id', '=', 'contacts.owners_id')
+                ->where('owners.name', 'like', '%' . $get . '%')
+                ->orWhere('contacts.number', 'like', '%' . $get . '%')
+                ->get();
         } else {
-            $contact = Contact::with('person')->get();
+            $contact = Contact::all();
         }
         return view('welcome', compact('contact', 'get'));
     }
 
     public function create()
     {
-        $person = person::all();
+        $person = Owner::all();
         return view('contact.create', compact('person'));
     }
 
@@ -34,7 +38,8 @@ class ContactController extends Controller
 
     public function update(request $request)
     {
-        Contact::findOrFail($request->id)->update($request->all());
+        Contact::where('id', $request->id)->update(['number' => $request->number]);
+        //    Contact::findOrFail($request->id)->update($request->all());
         return redirect(route('index'));
     }
 
@@ -42,7 +47,7 @@ class ContactController extends Controller
     {
         $contacto = new Contact();
         $contacto->number = $request->number;
-        $contacto->people_id = $request->people_id;
+        $contacto->owners_id = $request->owners_id;
         $contacto->save();
         return redirect('/')->with('msg', 'Cadastrado com sucesso!!!');
     }

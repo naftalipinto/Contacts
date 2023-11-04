@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Person;
+use App\Models\Owner;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Contact extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function person(){
-        return $this->belongsTo(Person::class);
+    public function getOwner() :BelongsTo{
+        return $this->belongsTo(Owner::class,'owners_id');
     }
     
 }

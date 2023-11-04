@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
-class PersonController extends Controller
+class OwnerController extends Controller
 {
     public function store(Request $request)
     {
-        $person = new Person();
+        $person = new Owner();
         $person->name = $request->name;
         $person->save();
         return redirect('/')->with('msg', 'Cadastrado com sucesso!!!');
@@ -22,13 +22,13 @@ class PersonController extends Controller
 
     public function edit($id)
     {
-        $person = Person::findOrFail($id);
+        $person = Owner::findOrFail($id);
         return view('person.edit', compact('person'));
     }
 
     public function update(request $request)
     {
-        Person::findOrFail($request->id)->update($request->all());
+        Owner::findOrFail($request->id)->update($request->all());
         return redirect(route('index'));
     }
 
